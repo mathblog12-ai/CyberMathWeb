@@ -1,1 +1,65 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CyberMath: Hệ BPT 2 Ẩn</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app">
+    <main class="body-grid">
+      <aside class="sidebar">
+        <div class="section-title cyan2">1. NHẬP BẤT PHƯƠNG TRÌNH</div>
+        <div class="muted small">Dạng: a·x + b·y [dấu] c</div>
+        <div class="ineq-form">
+          <input id="a" value="1">
+          <span>x +</span>
+          <input id="b" value="0">
+          <span>y</span>
+          <select id="op"><option>≤</option><option>≥</option><option>&lt;</option><option>&gt;</option><option>=</option></select>
+          <input id="c" value="0">
+        </div>
+        <div class="muted tiny">Bấm số để điền nhanh vào ô đang chọn (a/b/c):</div>
+        <div class="keypad" id="keypad"></div>
+        <button id="addBtn" class="btn add">+ THÊM VÀO HỆ</button>
 
+        <div class="section-title pink">2. DANH SÁCH HỆ BPT</div>
+        <div id="ineqList" class="ineq-list"></div>
+        <button id="solveBtn" class="btn solve">▶ &nbsp;BẮT ĐẦU GIẢI</button>
+
+        <div class="section-title pink">3. ĐIỀU HƯỚNG TỪNG BƯỚC</div>
+        <div class="nav-row">
+          <button class="icon-btn" id="first">⏮</button><button class="icon-btn" id="prev">◀</button><button class="icon-btn" id="next">▶</button><button class="icon-btn" id="last">⏭</button>
+        </div>
+        <div id="stepLabel" class="step-label">Bước 0/0</div>
+        <button id="autoBtn" class="btn neutral">⏵ &nbsp;Auto Play (2.5s / bước)</button>
+
+        <div class="section-title pink">4. ĐƯỜNG MỨC TỐI ƯU &nbsp; F = ax + by</div>
+        <div class="muted small">Nhập hệ số a, b của hàm mục tiêu:</div>
+        <div class="obj-form"><input id="oa" value="1"><span>x +</span><input id="ob" value="1"><span>y</span></div>
+        <button id="objApply" class="btn neutral">✓ &nbsp;Áp dụng F</button>
+        <button id="objToggle" class="btn neutral">📈 &nbsp;Hiện đường mức F</button>
+        <div id="objLabel" class="obj-label">F = 1x + 1y = 0</div>
+        <input id="objSlider" type="range" min="-20" max="20" step="0.001" value="0">
+        <button id="verticesBtn" class="btn neutral">📐 &nbsp;Hiện đỉnh</button>
+      </aside>
+
+      <section class="canvas-area">
+        <button id="resetView" class="canvas-btn top-right">↺ &nbsp;Đặt lại mẫu</button>
+        <div id="plot"></div>
+        <div class="hint">🖱 Cuộn để zoom · Giữ & kéo để di chuyển</div>
+      </section>
+
+      <aside class="explain-panel">
+        <div class="explain-header">📟 GIẢI THÍCH TỪNG BƯỚC</div>
+        <div class="explain-card"><pre id="explain">Nhấn “BẮT ĐẦU GIẢI” để xem
+từng bước minh họa.</pre></div>
+      </aside>
+    </main>
+    <footer><span id="coords">x = — &nbsp;&nbsp; y = —</span><span id="status">Sẵn sàng.</span></footer>
+  </div>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
